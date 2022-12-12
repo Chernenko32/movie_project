@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.movie_project.service.service.MovieService;
+import com.example.movie_project.service.ifs.MovieService;
 import com.example.movie_project.vo.BuyTicketReq;
 import com.example.movie_project.vo.BuyTicketRes;
 import com.example.movie_project.vo.DeleteReq;

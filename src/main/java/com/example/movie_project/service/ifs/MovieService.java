@@ -1,4 +1,4 @@
-package com.example.movie_project.service.service;
+package com.example.movie_project.service.ifs;
 
 import com.example.movie_project.vo.BuyTicketReq;
 import com.example.movie_project.vo.BuyTicketRes;
