@@ -24,7 +24,7 @@ public class Customer {
 
 	@Column(name = "name")
 	private String name;
-	
+
 	@CreationTimestamp
 	@Column(name = "order_date")
 	private LocalDateTime orderDate;
@@ -38,18 +38,22 @@ public class Customer {
 	@Column(name = "total_price")
 	private Integer totalPrice;
 
+	@Column(name = "verify")
+	private boolean verify;
+
 	public Customer() {
 
 	}
 
 	public Customer(Integer id, String name, LocalDateTime orderDate, String buyMovieCode, Integer ticketQuantity,
-			Integer totalPrice) {
+			Integer totalPrice,boolean verify) {
 		this.id = id;
 		this.name = name;
 		this.orderDate = orderDate;
 		this.buyMovieCode = buyMovieCode;
 		this.ticketQuantity = ticketQuantity;
 		this.totalPrice = totalPrice;
+		this.verify = verify;
 	}
 
 	public Integer getId() {
@@ -98,6 +102,14 @@ public class Customer {
 
 	public void setTotalPrice(Integer totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+
+	public boolean isVerify() {
+		return verify;
+	}
+
+	public void setVerify(boolean verify) {
+		this.verify = verify;
 	}
 
 }

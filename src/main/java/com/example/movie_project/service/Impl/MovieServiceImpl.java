@@ -1,4 +1,4 @@
-package com.example.movie_project.service.ifs.Impl;
+package com.example.movie_project.service.Impl;
 
 import java.util.Optional;
 
@@ -64,6 +64,7 @@ public class MovieServiceImpl implements MovieService {
 		res.setBuyMovieCode(customer.getBuyMovieCode());
 		res.setTicketQuantity(customer.getTicketQuantity());
 		res.setTotalPrice(customer.getTotalPrice());
+		res.setVerify(false);
 		res.setMessage(ErrorMessage.SUCCESS.getMessage());
 		return res;
 	}
@@ -117,7 +118,18 @@ public class MovieServiceImpl implements MovieService {
 		}else {
 			res.setMessage(ErrorMessage.CUSTOMERID_NOT_EXSIST.getMessage());
 		}
-
+		Customer customer = customerOp.get();
+		Optional<Movie> movieOp = movieDao.findById(customer.getBuyMovieCode());
+		Movie movie = movieOp.get();
+		movie.setTotalTicket(movie.getTotalTicket() + customer.getTicketQuantity());
 		return res;
+	}
+
+	@Override
+	public void reviseVerify(BuyTicketReq req) {
+		Optional<Customer> customerOp = customerDao.findById(req.getCustomerId());
+		Customer customer = customerOp.get();
+		customer.setVerify(true);
+		customerDao.save(customer);
 	}
 }
