@@ -1,4 +1,4 @@
-package com.example.movie_project.service.ifs;
+package com.example.movie_project.service.service;
 
 import com.example.movie_project.vo.BuyTicketReq;
 import com.example.movie_project.vo.BuyTicketRes;
@@ -12,5 +12,7 @@ public interface MovieService {
 	public BuyTicketRes reviseCustomerAndBuy(ReviseReq req);
 	//刪除
 	public BuyTicketRes deleteCustomerAndBuy(DeleteReq req);
+	//改變驗證狀態
+	public void reviseVerify(BuyTicketReq req);
 	
 }

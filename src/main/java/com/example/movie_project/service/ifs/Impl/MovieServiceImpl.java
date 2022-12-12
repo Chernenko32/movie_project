@@ -11,7 +11,7 @@ import com.example.movie_project.entity.Customer;
 import com.example.movie_project.entity.Movie;
 import com.example.movie_project.repository.CustomerDao;
 import com.example.movie_project.repository.MovieDao;
-import com.example.movie_project.service.ifs.MovieService;
+import com.example.movie_project.service.service.MovieService;
 import com.example.movie_project.vo.BuyTicketReq;
 import com.example.movie_project.vo.BuyTicketRes;
 import com.example.movie_project.vo.DeleteReq;
@@ -64,6 +64,7 @@ public class MovieServiceImpl implements MovieService {
 		res.setBuyMovieCode(customer.getBuyMovieCode());
 		res.setTicketQuantity(customer.getTicketQuantity());
 		res.setTotalPrice(customer.getTotalPrice());
+		res.setVerify(false);
 		res.setMessage(ErrorMessage.SUCCESS.getMessage());
 		return res;
 	}
@@ -117,7 +118,18 @@ public class MovieServiceImpl implements MovieService {
 		}else {
 			res.setMessage(ErrorMessage.CUSTOMERID_NOT_EXSIST.getMessage());
 		}
-
+		Customer customer = customerOp.get();
+		Optional<Movie> movieOp = movieDao.findById(customer.getBuyMovieCode());
+		Movie movie = movieOp.get();
+		movie.setTotalTicket(movie.getTotalTicket() + customer.getTicketQuantity());
 		return res;
+	}
+
+	@Override
+	public void reviseVerify(BuyTicketReq req) {
+		Optional<Customer> customerOp = customerDao.findById(req.getCustomerId());
+		Customer customer = customerOp.get();
+		customer.setVerify(true);
+		customerDao.save(customer);
 	}
 }
