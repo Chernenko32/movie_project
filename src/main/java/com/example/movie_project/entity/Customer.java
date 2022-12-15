@@ -38,22 +38,22 @@ public class Customer {
 	@Column(name = "total_price")
 	private Integer totalPrice;
 
-	@Column(name = "verify")
-	private boolean verify;
+	@Column(name = "status")
+	private String status;
 
 	public Customer() {
 
 	}
 
 	public Customer(Integer id, String name, LocalDateTime orderDate, String buyMovieCode, Integer ticketQuantity,
-			Integer totalPrice,boolean verify) {
+			Integer totalPrice, String status) {
 		this.id = id;
 		this.name = name;
 		this.orderDate = orderDate;
 		this.buyMovieCode = buyMovieCode;
 		this.ticketQuantity = ticketQuantity;
 		this.totalPrice = totalPrice;
-		this.verify = verify;
+		this.status = status;
 	}
 
 	public Integer getId() {
@@ -104,12 +104,12 @@ public class Customer {
 		this.totalPrice = totalPrice;
 	}
 
-	public boolean isVerify() {
-		return verify;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setVerify(boolean verify) {
-		this.verify = verify;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

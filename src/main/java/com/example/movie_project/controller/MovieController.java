@@ -42,6 +42,6 @@ public class MovieController {
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	@PostMapping(value = "/api/reviseVerify")
 	public void reviseVerify(@RequestBody BuyTicketReq req) {
-		movieService.reviseVerify(req);
+		movieService.reviseStatus(req);
 	}
 }

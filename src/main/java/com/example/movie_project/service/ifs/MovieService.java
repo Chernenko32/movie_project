@@ -13,6 +13,6 @@ public interface MovieService {
 	//刪除
 	public BuyTicketRes deleteCustomerAndBuy(DeleteReq req);
 	//改變驗證狀態
-	public void reviseVerify(BuyTicketReq req);
+	public void reviseStatus(BuyTicketReq req);
 	
 }

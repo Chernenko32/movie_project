@@ -15,7 +15,7 @@ public class BuyTicketRes {
 
 	private Integer totalPrice;
 
-	private boolean verify;
+	private String status;
 
 	private String message;
 
@@ -63,20 +63,20 @@ public class BuyTicketRes {
 		this.totalPrice = totalPrice;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String getMessage() {
 		return message;
 	}
 
 	public void setMessage(String message) {
 		this.message = message;
-	}
-
-	public boolean isVerify() {
-		return verify;
-	}
-
-	public void setVerify(boolean verify) {
-		this.verify = verify;
 	}
 
 }

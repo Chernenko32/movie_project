@@ -3,6 +3,7 @@ package com.example.movie_project.service.Impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -40,7 +41,6 @@ public class MovieServiceImpl implements MovieService {
 		}
 		// 穝逞緇布计
 		Movie movie = movieOp.get();
-		movie.setAmountTicket(movie.getAmountTicket() - req.getTicketQuantity());
 		//浪琩逞緇布计
 		if(movie.getAmountTicket()==0) {
 			res.setMessage(ErrorMessage.TICKET_SOLD_OUT.getMessage());
@@ -50,6 +50,7 @@ public class MovieServiceImpl implements MovieService {
 			res.setMessage(ErrorMessage.TICKET_NOT_ENOUGH.getMessage());
 			return res;
 		}
+		movie.setAmountTicket(movie.getAmountTicket() - req.getTicketQuantity());
 		movieDao.save(movie);
 		// 秈DB
 		Customer customer = new Customer();
@@ -64,7 +65,7 @@ public class MovieServiceImpl implements MovieService {
 		res.setBuyMovieCode(customer.getBuyMovieCode());
 		res.setTicketQuantity(customer.getTicketQuantity());
 		res.setTotalPrice(customer.getTotalPrice());
-		res.setVerify(false);
+		res.setStatus("unpaid");;
 		res.setMessage(ErrorMessage.SUCCESS.getMessage());
 		return res;
 	}
@@ -126,10 +127,10 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public void reviseVerify(BuyTicketReq req) {
+	public void reviseStatus(BuyTicketReq req) {
 		Optional<Customer> customerOp = customerDao.findById(req.getCustomerId());
 		Customer customer = customerOp.get();
-		customer.setVerify(true);
+		customer.setStatus("paid");;
 		customerDao.save(customer);
 	}
 }
