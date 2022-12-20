@@ -18,7 +18,8 @@ public interface CustomerDao extends JpaRepository<Customer, Integer> {
 	
 	public List<Customer> deleteByBuyMovieCode(String buyMovieCode);
 	@Transactional
-	@Modifying
+	@Modifying														//:传23︽肚秈ㄓ把计
 	@Query("update Customer set status = 'expired' where order_date < :time and status = 'unpaid'")
+	//int肚Θ穝掸计
 	int updateStatus(@Param(value = "time") String time);
 }

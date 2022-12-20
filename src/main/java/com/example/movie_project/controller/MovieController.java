@@ -39,7 +39,7 @@ public class MovieController {
 		return movieService.deleteCustomerAndBuy(req);
 	}
 	
-	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)//指定HttpStatus返回204的狀態,NO_CONTENT為無內容的Response,狀態為204
 	@PostMapping(value = "/api/reviseVerify")
 	public void reviseVerify(@RequestBody BuyTicketReq req) {
 		movieService.reviseStatus(req);

@@ -15,9 +15,10 @@ public class TimeCheck {
 	@Autowired
 	private CustomerDao customerDao;
 
-	@Scheduled(fixedRate = 20000)
+	@Scheduled(fixedRate = 60000)
 	public void timeCheck() {
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		//現在的時間減去一分鐘
 		LocalDateTime time = LocalDateTime.now().minusMinutes(1);
 		customerDao.updateStatus(dateFormat.format(time));
 	}
