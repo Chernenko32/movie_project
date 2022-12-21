@@ -50,14 +50,26 @@ public class MovieServiceImpl implements MovieService {
 			res.setMessage(ErrorMessage.TICKET_NOT_ENOUGH.getMessage());
 			return res;
 		}
+		
+		if(req.getTicketQuantity() <= 0) {
+			res.setMessage(ErrorMessage.TICKET_ERROR.getMessage());
+		}
 		movie.setAmountTicket(movie.getAmountTicket() - req.getTicketQuantity());
 		movieDao.save(movie);
+		
+//		String pattern="^09[0-9]{8}$";
+		if(!req.getPhoneNumber().matches("[0-9]{4}[0-9]{6}")) {
+			res.setMessage(ErrorMessage.PHONE_NUMBER_ERROR.getMessage());
+			return res;
+		}
 		// 存進DB
 		Customer customer = new Customer();
 		customer.setName(req.getCustomerName());
 		customer.setBuyMovieCode(req.getBuyMovieCode());
 		customer.setTicketQuantity(req.getTicketQuantity());
 		customer.setTotalPrice(movie.getPrice() * req.getTicketQuantity());
+		customer.setPhoneNumber(req.getPhoneNumber());
+		customer.setStatus("unpaid");
 		customerDao.save(customer);
 		// 往res設值
 		res.setCustomerId(customer.getId());
@@ -65,7 +77,8 @@ public class MovieServiceImpl implements MovieService {
 		res.setBuyMovieCode(customer.getBuyMovieCode());
 		res.setTicketQuantity(customer.getTicketQuantity());
 		res.setTotalPrice(customer.getTotalPrice());
-		res.setStatus("unpaid");;
+		res.setPhoneNumber(customer.getPhoneNumber());;
+		res.setStatus("unpaid");
 		res.setMessage(ErrorMessage.SUCCESS.getMessage());
 		return res;
 	}

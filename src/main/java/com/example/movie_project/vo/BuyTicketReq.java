@@ -15,6 +15,9 @@ public class BuyTicketReq {
 	@JsonProperty("ticket_quantity")
 	private Integer ticketQuantity;
 
+	@JsonProperty("phone_number")
+	private String phoneNumber;
+
 	public BuyTicketReq() {
 
 	}
@@ -49,6 +52,14 @@ public class BuyTicketReq {
 
 	public void setTicketQuantity(Integer ticketQuantity) {
 		this.ticketQuantity = ticketQuantity;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 }

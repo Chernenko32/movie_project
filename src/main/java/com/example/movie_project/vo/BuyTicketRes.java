@@ -19,6 +19,8 @@ public class BuyTicketRes {
 
 	private String message;
 
+	private String phoneNumber;
+
 	public BuyTicketRes() {
 
 	}
@@ -77,6 +79,14 @@ public class BuyTicketRes {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 }

@@ -41,12 +41,15 @@ public class Customer {
 	@Column(name = "status")
 	private String status;
 
+	@Column(name = "phone_Number")
+	private String phoneNumber;
+
 	public Customer() {
 
 	}
 
 	public Customer(Integer id, String name, LocalDateTime orderDate, String buyMovieCode, Integer ticketQuantity,
-			Integer totalPrice, String status) {
+			Integer totalPrice, String status, String phoneNumber) {
 		this.id = id;
 		this.name = name;
 		this.orderDate = orderDate;
@@ -54,6 +57,7 @@ public class Customer {
 		this.ticketQuantity = ticketQuantity;
 		this.totalPrice = totalPrice;
 		this.status = status;
+		this.phoneNumber = phoneNumber;
 	}
 
 	public Integer getId() {
@@ -110,6 +114,14 @@ public class Customer {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 }
